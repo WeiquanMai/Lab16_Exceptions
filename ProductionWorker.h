@@ -1,0 +1,79 @@
+// Specification file for the ProductionWorker Class
+// Modified code obtained from Professor Morgan
+
+#ifndef PRODUCTION_WORKER_H
+#define PRODUCTION_WORKER_H
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include "Employee.h"
+
+using namespace std;
+
+class ProductionWorker : public Employee
+{
+private:
+	int shift;		// The worker's shift
+	double payRate;	// The worker's hourly pay rate
+
+public:
+	// Default constructor
+	ProductionWorker() : Employee() {
+		shift = 0; payRate = 0.0;
+	}
+
+
+	// Constructor
+	ProductionWorker(string aName, string aDate, int aShift, double aPayRate)
+		: Employee(aName, aDate) {
+		shift = aShift; payRate = aPayRate;
+	}
+
+
+	// Mutators
+	void setShift(int s);
+	void setPayRate(double r);
+	static ProductionWorker* createNewProductionWorker();
+
+	// Accessors
+	int getShiftNumber() const;
+	string getShiftName() const;
+	double getPayRate() const;
+	void printWorkerData() const;
+
+};
+
+
+// InvalidShift exception class
+class InvalidShift {
+private:
+	int shift;
+public:
+	InvalidShift(int input)
+	{
+		shift = input;
+	}
+	double getInvalidShift() const
+	{
+		return shift;
+	}
+};
+bool testShift(int shift);
+
+
+// InvalidPayRate exception class
+class InvalidPayRate {
+private:
+	double payRateValue;
+public:
+	InvalidPayRate(double input)
+	{
+		payRateValue = input;
+	}
+	double getInvalidPayRate() const
+	{
+		return payRateValue;
+	}
+};
+bool testPayRate(double rate);
+#endif
